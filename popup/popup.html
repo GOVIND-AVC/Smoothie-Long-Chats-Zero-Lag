@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="container">
+
+  <!-- Error -->
+  <div id="error-message" class="error-message" style="display:none">
+    <div class="error-content">
+      <div>
+        <div class="error-title">⚠ Extension Not Active</div>
+        <div class="error-sub">Reload the page to activate</div>
+      </div>
+      <button id="reload-page-btn" class="btn-small danger">Reload</button>
+    </div>
+  </div>
+
+  <!-- Reload note -->
+  <div id="reload-note" class="reload-note" style="display:none">
+    <span>ℹ New limit applies on next page load</span>
+    <button class="btn-small warn" id="reload-note-btn">Reload Now</button>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-block">
+      <div class="logo">SMOOTHIE</div>
+      <div class="logo-sub">Network-level limiter</div>
+    </div>
+    <div class="version-pill">v1.0.0</div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num" id="total-messages">—</div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num purple" id="visible-messages">—</div>
+      <div class="stat-label">Visible</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num muted" id="hidden-messages">—</div>
+      <div class="stat-label">Hidden</div>
+    </div>
+  </div>
+
+  <!-- Toggle -->
+  <div class="section-title">Settings</div>
+
+  <div class="toggle-row">
+    <div>
+      <div class="toggle-label-text">Message Limiting</div>
+      <div class="toggle-label-sub">Intercept at network level</div>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="enable-trim" checked>
+      <span class="switch-track"></span>
+    </label>
+  </div>
+
+  <!-- Slider -->
+  <div class="slider-block">
+    <div class="slider-header">
+      <div class="slider-label">Initial messages to load</div>
+      <div class="slider-value" id="limit-value">10</div>
+    </div>
+    <input type="range" id="message-limit" min="5" max="100" step="5" value="10">
+    <div class="slider-ticks">
+      <span class="slider-tick">5</span>
+      <span class="slider-tick">25</span>
+      <span class="slider-tick">50</span>
+      <span class="slider-tick">75</span>
+      <span class="slider-tick">100</span>
+    </div>
+  </div>
+
+  <!-- Load more -->
+  <div class="load-block">
+    <div class="section-label-sm">LOAD OLDER MESSAGES INTO CURRENT CHAT</div>
+    <div class="btn-grid">
+      <button id="load-10-btn"  class="btn btn-neon">+10</button>
+      <button id="load-25-btn"  class="btn btn-neon">+25</button>
+      <button id="load-50-btn"  class="btn btn-neon">+50</button>
+      <button id="show-all-btn" class="btn btn-purple">ALL</button>
+    </div>
+  </div>
+
+  <!-- Reload -->
+  <button id="trim-now-btn" class="btn-full neon">
+    ⟳ &nbsp;RELOAD WITH CURRENT LIMIT
+  </button>
+
+  <div class="divider"></div>
+
+  <!-- Performance -->
+  <div class="section-title">Performance</div>
+
+  <div class="perf-section">
+    <div class="perf-grid">
+      <div class="perf-card">
+        <div class="perf-icon">◈</div>
+        <span class="perf-val ok" id="dom-elements">—</span>
+        <span class="perf-key">DOM nodes</span>
+      </div>
+      <div class="perf-card">
+        <div class="perf-icon">▣</div>
+        <span class="perf-val" id="estimated-memory">—</span>
+        <span class="perf-key">Memory</span>
+      </div>
+      <div class="perf-card">
+        <div class="perf-icon">◉</div>
+        <span class="perf-val ok" id="performance-score">—</span>
+        <span class="perf-key">Score</span>
+      </div>
+    </div>
+    <div class="bar-track">
+      <div id="performance-bar" class="bar-fill" style="width:100%"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="footer-ver">SMOOTHIE / v1.0.0</span>
+    <button class="footer-reset" id="reset-link">Reset defaults</button>
+  </div>
+
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
