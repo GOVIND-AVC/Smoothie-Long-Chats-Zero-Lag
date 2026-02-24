@@ -3,6 +3,11 @@
   "name": "Smoothie",
   "version": "1.0.0",
   "description": "Network-layer ChatGPT accelerator: truncates conversation payloads pre-render for ultra-smooth long chats.",
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
 
   "permissions": [
     "storage",
