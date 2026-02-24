@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "Smoothie",
+  "version": "1.0.0",
+  "description": "Network-layer ChatGPT accelerator: truncates conversation payloads pre-render for ultra-smooth long chats.",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "alarms",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*"
+  ],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
+      "js": [
+        "content/injector.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
+      "js": [
+        "lib/storage-utils.js",
+        "content/content.js"
+      ],
+      "css": ["content/styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "inject/fetch-interceptor.js",
+        "content/styles.css",
+        "assets/*"
+      ],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ]
+    }
+  ]
+}

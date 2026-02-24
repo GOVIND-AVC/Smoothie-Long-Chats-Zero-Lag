@@ -1,0 +1,230 @@
+/* ═══════════════════════════════════════════════════════════════
+   SMOOTHIE — Neon Glass  |  In-page styles
+═══════════════════════════════════════════════════════════════ */
+
+/* Fonts: system stack (CSP safe — no external font requests) */
+
+/* ── Load banner ──────────────────────────────────────────── */
+.smoothie-load-banner {
+  /* Fixed to top of viewport so it floats above content */
+  position: fixed;
+  top: 0;
+  /* Align with the chat area, not the sidebar */
+  left: 50%;
+  transform: translateX(-50%) translateY(-110%);
+  width: max-content;
+  max-width: min(680px, 90vw);
+  z-index: 99999;
+  background: rgba(11, 11, 13, 0.95);
+  border: 1px solid rgba(215, 255, 63, 0.25);
+  border-radius: 0 0 14px 14px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(215,255,63,0.08),
+    inset 0 1px 0 rgba(215,255,63,0.1);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Smooth slide up/down */
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity  0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Visible state — slides down */
+.smoothie-load-banner.si-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hidden state — slides back up */
+.smoothie-load-banner.si-hidden {
+  transform: translateX(-50%) translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.si-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  flex-wrap: wrap;
+}
+
+.si-info {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.si-info strong {
+  font-family: 'Courier New', 'Lucida Console', monospace;
+  font-size: 15px;
+  color: #D7FF3F;
+  text-shadow: 0 0 12px rgba(215,255,63,0.5);
+}
+
+.si-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  margin-left: 2px;
+}
+
+.si-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.si-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: 'Courier New', 'Lucida Console', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.si-btn-sm {
+  background: rgba(215, 255, 63, 0.08);
+  border: 1px solid rgba(215, 255, 63, 0.3);
+  color: #D7FF3F;
+}
+
+.si-btn-sm:hover {
+  background: rgba(215, 255, 63, 0.18);
+  border-color: rgba(215, 255, 63, 0.7);
+  box-shadow: 0 0 14px rgba(215,255,63,0.25);
+  transform: translateY(-1px);
+}
+
+.si-btn-all {
+  background: #D7FF3F;
+  border: 1px solid #D7FF3F;
+  color: #0B0B0D;
+  box-shadow: 0 0 16px rgba(215,255,63,0.3);
+}
+
+.si-btn-all:hover {
+  box-shadow: 0 0 24px rgba(215,255,63,0.5);
+  transform: translateY(-1px);
+}
+
+/* ── Legacy trim indicator ────────────────────────────────── */
+.chatgpt-trim-indicator {
+  background: rgba(11, 11, 13, 0.9);
+  border: 1px solid rgba(215, 255, 63, 0.2);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  animation: smoothie-slide-in 0.3s ease-out;
+}
+
+.trim-content { display: flex; flex-direction: column; gap: 10px; }
+.trim-message { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
+.trim-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.trim-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-family: 'Courier New', 'Lucida Console', monospace;
+  font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: all 0.18s;
+}
+.trim-btn-primary {
+  background: #D7FF3F; color: #0B0B0D; border: 1px solid #D7FF3F;
+  box-shadow: 0 0 12px rgba(215,255,63,0.3);
+}
+.trim-btn-primary:hover { box-shadow: 0 0 20px rgba(215,255,63,0.5); transform: translateY(-1px); }
+.trim-btn-secondary {
+  background: rgba(215,255,63,0.08);
+  color: #D7FF3F;
+  border: 1px solid rgba(215,255,63,0.25);
+}
+.trim-btn-secondary:hover {
+  background: rgba(215,255,63,0.15);
+  border-color: rgba(215,255,63,0.5);
+  transform: translateY(-1px);
+}
+
+/* ── Warnings ─────────────────────────────────────────────── */
+.chatgpt-warning {
+  position: fixed; top: 20px; right: 20px;
+  max-width: 360px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  display: flex; align-items: center; gap: 12px;
+  z-index: 10000;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: smoothie-slide-right 0.3s ease-out;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  border: 1px solid;
+}
+.chatgpt-warning span { flex:1; font-size: 13px; font-weight: 500; }
+.chatgpt-warning button {
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 11px; font-weight: 600;
+  cursor: pointer; background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.15); color: inherit;
+  transition: background 0.15s;
+}
+.chatgpt-warning button:hover { background: rgba(0,0,0,0.4); }
+
+.chatgpt-warning-warning {
+  background: rgba(255,181,71,0.12);
+  border-color: rgba(255,181,71,0.35);
+  color: #FFB547;
+  box-shadow: 0 8px 32px rgba(255,181,71,0.15);
+}
+.chatgpt-warning-critical {
+  background: rgba(255,77,106,0.12);
+  border-color: rgba(255,77,106,0.35);
+  color: #FF4D6A;
+  box-shadow: 0 8px 32px rgba(255,77,106,0.15);
+}
+
+/* ── Bookmarks ────────────────────────────────────────────── */
+.chatgpt-bookmarked {
+  position: relative;
+  border-left: 3px solid #D7FF3F;
+  padding-left: 12px;
+  background: rgba(215,255,63,0.03);
+}
+.bookmark-indicator {
+  position: absolute; top: 8px; right: 8px;
+  background: rgba(215,255,63,0.12);
+  border: 1px solid rgba(215,255,63,0.35);
+  color: #D7FF3F;
+  padding: 4px 10px; border-radius: 6px;
+  font-family: 'Courier New', 'Lucida Console', monospace;
+  font-size: 10px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s;
+}
+.bookmark-indicator:hover {
+  background: rgba(215,255,63,0.22);
+  box-shadow: 0 0 10px rgba(215,255,63,0.25);
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+/* smoothie-drop removed — transition handled by si-visible/si-hidden classes */
+@keyframes smoothie-slide-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes smoothie-slide-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
